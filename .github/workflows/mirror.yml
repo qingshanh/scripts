@@ -2,7 +2,7 @@ name: 'GitHub Actions Mirror'
 
 on: [push, delete]
 
-jobs:
+jobs: 
   mirror_to_gitee:
     runs-on: ubuntu-latest
     steps:
