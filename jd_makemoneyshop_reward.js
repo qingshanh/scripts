@@ -16,7 +16,7 @@ ruleId=02b48428177a44a4110034497668f808  100元现金
 const $ = new Env('大赢家提现');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const request = require("request");
-let Yanchi = '40';  //执行间隔，每次xx毫秒
+let Yanchi = '200';  //执行间隔，每次xx毫秒
 let ruleId = ["7ea791839f7fe3168150396e51e30917"];  //这里填写ruleId
 let cookies = []
 if ($.isNode()) {
@@ -49,14 +49,14 @@ if ($.isNode()) {
             let date = new Date();
             date.setHours(23);
             date.setMinutes(59);
-            date.setSeconds(57);
+            date.setSeconds(58);
             date.setMilliseconds(850);  //这里设置提现时间，时分秒毫秒
             let time = date.getTime();
             let nowtime = new Date().getTime();
             let waittime = time - nowtime;
             console.log(`等待 ${Math.floor(waittime / 1000)} 秒后开始执行`);
             await $.wait(waittime);
-            for (let j = 1; j < 51; j++) {           ///循环提现次数
+            for (let j = 1; j < 30; j++) {           ///循环提现次数
                 const res = await dayingjiatx($.cookie, ruleId[0]);
                 await new Promise(resolve => setTimeout(resolve, Yanchi));
                 console.log(`${$.UserName}第${j}次提现结果：${res}`);
