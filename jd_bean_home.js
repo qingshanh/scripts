@@ -55,7 +55,7 @@ const JD_API_HOST = 'https://api.m.jd.com/';
       $.nickName = '';
       message = '';
       uuid = randomString()
-      await TotalBean();
+      //await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -139,7 +139,7 @@ async function jdBeanHome() {
     await $.wait(1000)
     await getUserInfo()
     await $.wait(1000)
-    await getTaskList();
+    // await getTaskList();
     await receiveJd2();
 
     //await morningGetBean()
@@ -427,7 +427,7 @@ function doTask2() {
 function getAuthorShareCode(url) {
   return new Promise(resolve => {
     const options = {
-      url: `${url}?${new Date()}`, "timeout": 1000, headers: {
+      url: `${url}?${new Date()}`, "timeout": 10000, headers: {
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }
     };
