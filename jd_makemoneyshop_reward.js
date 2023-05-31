@@ -15,7 +15,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '';
 let cashout = []
-let isCashOut = process.env.isCashOut ?? false;
+let isCashOut = process.env.isCashOut ?? true;
 cookiesArr = process.env.JD_COOKIE.split('&');
 const run_order = [
     '100元',
