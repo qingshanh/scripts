@@ -76,7 +76,7 @@ const JD_API_HOST = `https://api.m.jd.com/client.action`;
 			$.nickName = '';
 			$.beans = 0;
 			message = '';
-			await TotalBean();
+			//await TotalBean();
 			console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********`);
 			if (!$.isLogin) {
 				$.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
@@ -255,10 +255,18 @@ function harmony_collectScore(taskToken, taskId, itemId = "", actionType = 0, ti
 					if (data.data.bizMsg === "任务领取成功") {
 						await harmony_collectScore(taskToken, taskId, itemId, 0, parseInt(browseTime) * 1000);
 					} else {
-						console.log(data.data.bizMsg)
-						var tempMsg =data.data.bizMsg;
-						if(tempMsg=="已达到助力上限")
+						// 已达到助力上限
+						if(data.data.bizMsg === '助力已满员！谢谢你哦~'){
+							for (let z = 0; z < $.newShareCodes.length; z++) {
+								if($.newShareCodes[z]===taskToken){
+									$.newShareCodes.splice(z, 1)
+									break
+								}
+							}
+						}else if ( data.data.bizMsg === '已达到助力上限'|| data.data.bizMsg === '活动太火爆啦') {
 							llcanhelp=false;
+						}
+						console.log(data.data.bizMsg)
 					}
 				} catch (e) {
 					$.logErr(e, resp);
